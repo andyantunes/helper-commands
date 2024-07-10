@@ -1,0 +1,59 @@
+<?php
+
+namespace {{ namespace }};
+
+use AndyAntunes\UserActivities\Support\Facades\RecentActivity;
+use App\Models\{{ modelName }};
+
+class {{ class }}Observer
+{
+    /**
+     * Handle the {{ modelName }} "created" event.
+     */
+    public function created({{ modelName }} ${{ modelVariable }}): void
+    {
+        $action = "Criou o usuário de ID: {${{ modelVariable }}->id}";
+        RecentActivity::setAction($action)
+            ->create();
+    }
+
+    /**
+     * Handle the {{ modelName }} "updated" event.
+     */
+    public function updated({{ modelName }} ${{ modelVariable }}): void
+    {
+        $action = "Atualizou o usuário de ID: {${{ modelVariable }}->id}";
+        RecentActivity::setAction($action)
+            ->create();
+    }
+
+    /**
+     * Handle the {{ modelName }} "deleted" event.
+     */
+    public function deleted({{ modelName }} ${{ modelVariable }}): void
+    {
+        $action = "Deletou o usuário de ID: {${{ modelVariable }}->id}";
+        RecentActivity::setAction($action)
+            ->create();
+    }
+
+    /**
+     * Handle the {{ modelName }} "restored" event.
+     */
+    public function restored({{ modelName }} ${{ modelVariable }}): void
+    {
+        $action = "Restaurou o usuário de ID: {${{ modelVariable }}->id}";
+        RecentActivity::setAction($action)
+            ->create();
+    }
+
+    /**
+     * Handle the {{ modelName }} "force deleted" event.
+     */
+    public function forceDeleted({{ modelName }} ${{ modelVariable }}): void
+    {
+        $action = "Removeu o usuário de ID: {${{ modelVariable }}->id}";
+        RecentActivity::setAction($action)
+            ->create();
+    }
+}

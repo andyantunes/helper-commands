@@ -1,0 +1,28 @@
+{
+    "name": "andyantunes/user-activities",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "AndyAntunes\\UserActivities\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AndyAntunes\\UserActivities\\UserActivitiesServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Anderson Antunes",
+            "email": "andersonlantunes@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^9.0|^10.0"
+    }
+}
