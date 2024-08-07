@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static RecentActivity setRecordId(int $recordId)
  * @method static RecentActivity create()
  */
-class RecentActivity extends Facade
+class UserActivity extends Facade
 {
     protected static function getFacadeAccessor(): string
     {

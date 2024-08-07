@@ -2,7 +2,7 @@
 
 namespace AndyAntunes\UserActivities;
 
-use AndyAntunes\UserActivities\Models\RecentActivity;
+use AndyAntunes\UserActivities\Models\UserActivity;
 
 class UserActivities
 {
@@ -69,7 +69,7 @@ class UserActivities
          *
          * @return \Illuminate\Database\Eloquent\Model|null The newly created record instance, or null if the operation fails.
          */
-        RecentActivity::create([
+        UserActivity::create([
             'user_id' => $this->userId ?? auth()->id(),
             'action' => $this->recordId ? "{$this->action} de ID: {$this->recordId}" : $this->action,
         ]);

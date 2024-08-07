@@ -62,7 +62,6 @@ class UserActivitiesServiceProvider extends ServiceProvider
             __DIR__ . '/config/activities.php' => config_path('activities.php'),
         ], 'config');
 
-        //Publish Migration
         $this->publishes([
             __DIR__ . '/database/migrations/create_recent_activities_table.php.stub' => $this->getMigrationFileName('create_recent_activities_table.php'),
         ], 'migrations');
