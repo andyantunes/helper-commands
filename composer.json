@@ -4,7 +4,7 @@
     "homepage": "https://github.com/andyantunes/user-activities",
     "license": "MIT",
     "type": "library",
-    "version": "1.0.0",
+    "version": "v1.0.0",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "keywords": [
