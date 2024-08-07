@@ -5,18 +5,10 @@ namespace AndyAntunes\UserActivities;
 use AndyAntunes\UserActivities\Console\ActivityMakeModel;
 use AndyAntunes\UserActivities\Console\LaravelActivityObserverGenerator;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Collection;
-use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Illuminate\Support\{Collection, ServiceProvider};
 
-class UserActivitiesServiceProvider extends PackageServiceProvider
+class UserActivitiesServiceProvider extends ServiceProvider
 {
-    public function configurePackage(Package $package): void
-    {
-        $package->name('andyatunes-user-activities')
-            ->hasConfigFile('activities');
-    }
-
     /**
      * Bootstrap the application services.
      *
