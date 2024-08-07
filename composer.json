@@ -1,6 +1,6 @@
 {
     "name": "andyantunes/user-activities",
-    "type": "Helper to automate the creation of observers to Models",
+    "description": "Helper to automate the creation of observers to Models",
     "homepage": "https://github.com/andyantunes/user-activities",
     "license": "MIT",
     "keywords": [
