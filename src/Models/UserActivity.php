@@ -5,7 +5,7 @@ namespace AndyAntunes\UserActivities\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RecentActivity extends Model
+class UserActivity extends Model
 {
     /**
      * The attributes that are mass assignable.
