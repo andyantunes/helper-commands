@@ -1,7 +1,13 @@
 {
     "name": "andyantunes/user-activities",
-    "type": "library",
+    "type": "Helper to automate the creation of observers to Models",
+    "homepage": "https://github.com/andyantunes/user-activities",
     "license": "MIT",
+    "keywords": [
+        "andyantunes",
+        "laravel",
+        "laravel helper"
+    ],
     "autoload": {
         "psr-4": {
             "AndyAntunes\\UserActivities\\": "src/"
@@ -20,7 +26,6 @@
             "email": "andersonlantunes@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^8.1",
         "illuminate/support": "^9.0|^10.0"
