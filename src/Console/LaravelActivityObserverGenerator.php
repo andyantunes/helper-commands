@@ -4,51 +4,31 @@ namespace AndyAntunes\UserActivities\Console;
 
 use AndyAntunes\UserActivities\Services\Generator;
 use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
-use function Laravel\Prompts\text;
 
 class LaravelActivityObserverGenerator extends Command
 {
-    protected $signature = 'make:activity-observer {type?} {model?}';
+    protected $signature = 'make:activity {model?}';
 
     protected $description = 'Create a new Activity Observer class in any path';
 
     public function handle(): int
     {
-        $type = 'all';
-        // $type = $this->argument('type') ?? select(
-        //     'Select the type of observer',
-        //     [
-        //         'create' => 'Create',
-        //         'update' => 'Update',
-        //         'delete' => 'Delete',
-        //         'restore' => 'Restore',
-        //         'forceDelete' => 'Force Delete',
-        //         'all' => 'All',
-        //     ],
-        //     'all'
-        // );
+        $model = $this->argument('model');
 
-        // $model = $this->argument('model') ?? text('What is the name of the model?', required: false);
-        // $model = $this->argument('module') ??
-        //     confirm('Does this class belong to a model?', default: true, yes: 'Yes');
-        // if ($model) {
-        $models = $this->allModels();
-        $model = select(
-            label: 'What is the name of the model?',
-            options: $models,
-            required: true
-        );
-        // }
+        if (!$model) {
+            $model = select(
+                label: 'What is the name of the model?',
+                options: $this->allModels(),
+                required: true
+            );
+        }
 
         $generator = new Generator(
-            type: $type,
+            type: 'all',
             class: Str::ucfirst($model),
             modelName: Str::ucfirst($model),
             modelVariable: Str::camel($model),
@@ -63,6 +43,7 @@ class LaravelActivityObserverGenerator extends Command
 
     protected function allModels(): array
     {
+        $index = 0;
         $modelList = [];
         $path = app_path() . "/Models";
         $results = scandir($path);
@@ -74,8 +55,10 @@ class LaravelActivityObserverGenerator extends Command
             if (is_dir($filename)) {
                 $modelList = array_merge($modelList, getModels($filename));
             } else {
-                $modelList[strtolower(substr($filename, 0, -4))] = substr($filename, 0, -4);
+                $modelList[$index] = substr($filename, 0, -4);
             }
+
+            $index++;
         }
 
         return $modelList;
@@ -115,7 +98,7 @@ class LaravelActivityObserverGenerator extends Command
 
         $filesystem->put($modelFilePath, $content);
 
-        $this->info("Updated #[ObservedBy] attribute in {$model}.");
+        $this->info("Updated #[ObservedBy] attribute in {$model} Model.");
 
         return 0;
     }
@@ -151,7 +134,6 @@ class LaravelActivityObserverGenerator extends Command
             array_splice($lines, $namespaceLineIndex + 1, 0, '');
         }
 
-        // // Coleta todas as importações existentes
         $imports = [];
         $importStartIndex = $namespaceLineIndex + 2;
         for ($i = $importStartIndex; $i < count($lines); $i++) {
@@ -165,13 +147,11 @@ class LaravelActivityObserverGenerator extends Command
             }
         }
 
-        // Adiciona as novas importações à lista e ordena alfabeticamente
         $imports[] = "use App\Observers\\{$model}Observer;";
         $imports[] = $newImport;
         $imports = array_unique($imports);
         sort($imports);
 
-        // Insere as importações ordenadas após o namespace e a linha em branco
         array_splice($lines, $namespaceLineIndex + 2, 0, $imports);
 
         $filteredLines = [];
@@ -181,7 +161,6 @@ class LaravelActivityObserverGenerator extends Command
             }
         }
 
-        // Junta as linhas de volta em uma string
         return implode("\n", $filteredLines);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace AndyAntunes\UserActivities;
 
+use AndyAntunes\UserActivities\Console\ActivityMakeModel;
 use AndyAntunes\UserActivities\Console\LaravelActivityObserverGenerator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
@@ -13,7 +14,7 @@ class UserActivitiesServiceProvider extends PackageServiceProvider
     public function configurePackage(Package $package): void
     {
         $package->name('andyatunes-user-activities')
-            ->hasConfigFile('recent-activity');
+            ->hasConfigFile('activities');
     }
 
     /**
@@ -35,18 +36,23 @@ class UserActivitiesServiceProvider extends PackageServiceProvider
     {
         $this->registerCommand();
 
-        //Register Config file
         $this->mergeConfigFrom(
-            __DIR__ . '/config/recent-activity.php',
+            __DIR__ . '/config/activities.php',
             'config',
         );
+
+        $this->app->singleton('command.make.model', function ($app) {
+            return $app[ActivityMakeModel::class];
+        });
+
+        $this->commands([]);
     }
 
     protected function registerCommand()
     {
-        //Register generate command
         $this->commands([
             LaravelActivityObserverGenerator::class,
+            ActivityMakeModel::class,
         ]);
     }
 
@@ -57,13 +63,11 @@ class UserActivitiesServiceProvider extends PackageServiceProvider
         }
 
         if (!function_exists('config_path')) {
-            // function not available and 'publish' not relevant in Lumen
             return;
         }
 
-        //Publish Config
         $this->publishes([
-            __DIR__ . '/config/recent-activity.php' => config_path('recent-activity.php'),
+            __DIR__ . '/config/activities.php' => config_path('activities.php'),
         ], 'config');
 
         //Publish Migration

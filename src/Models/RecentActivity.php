@@ -20,8 +20,8 @@ class RecentActivity extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(
-            config('recent-activity.models.user'),
-            config('recent-activity.table_names.users'),
+            config('activities.models.user'),
+            config('activities.table_names.users'),
         );
     }
 }

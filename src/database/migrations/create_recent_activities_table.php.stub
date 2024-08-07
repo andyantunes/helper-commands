@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        $tableNames = config('recent-activity.table_names');
-        $columnNames = config('recent-activity.column_names');
+        $tableNames = config('activities.table_names');
+        $columnNames = config('activities.column_names');
         // dd(empty($tableNames));
         if (empty($tableNames)) {
-            throw new \Exception('Error: config/recent-activity.php not loaded. Run [php artisan config:clear] and try again.');
+            throw new \Exception('Error: config/activities.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
         Schema::create($tableNames['recent_activity'], function (Blueprint $table) use ($tableNames, $columnNames) {
