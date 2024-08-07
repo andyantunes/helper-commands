@@ -86,3 +86,7 @@ public function forceDeleted(MyModel $myModel): void
 ```
 
 You can edit the activity action as you wish.
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
