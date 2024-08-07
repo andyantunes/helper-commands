@@ -3,6 +3,10 @@
     "description": "Helper to automate the creation of observers to Models",
     "homepage": "https://github.com/andyantunes/user-activities",
     "license": "MIT",
+    "type": "library",
+    "version": "dev-main",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "keywords": [
         "andyantunes",
         "laravel",
@@ -28,6 +32,5 @@
     ],
     "require": {
         "php": "^8.1",
-        "illuminate/support": "^9.0"
     }
 }
