@@ -4,8 +4,6 @@
     "homepage": "https://github.com/andyantunes/user-activities",
     "license": "MIT",
     "type": "library",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "keywords": [
         "andyantunes",
         "laravel",
@@ -31,5 +29,7 @@
     ],
     "require": {
         "php": "^8.1"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
