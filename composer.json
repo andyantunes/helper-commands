@@ -1,7 +1,7 @@
 {
-    "name": "andyantunes/user-activities",
+    "name": "andyantunes/helper-commands",
     "description": "Helper to automate the creation of observers to Models",
-    "homepage": "https://github.com/andyantunes/user-activities",
+    "homepage": "https://github.com/andyantunes/helper-commands",
     "license": "MIT",
     "type": "library",
     "keywords": [
