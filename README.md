@@ -1,6 +1,6 @@
-# User Activities Log
+# Helper Commands
 
-Helper Class Generator to generate the user's log activities
+Commands to help in the development of laravel projects
 
 ## Installation
 
@@ -10,15 +10,15 @@ Install the package via composer
 composer require andyantunes/helper-commands --dev
 ```
 
-Publish the `migration` and the `config/activities.php` config file
+Publish the `migration` and the `config/helper-commands.php` config file
 
 ```bash
-php artisan vendor:publish --provider="AndyAntunes\\UserActivities\\UserActivitiesServiceProvider"
+php artisan vendor:publish --provider="AndyAntunes\\UserActivities\\HelperCommandsServiceProvider"
 ```
 
 Before running migration
 
-* Check the configuration file `config/activities.php` and change the configurations if you need
+* Check the configuration file `config/helper-commands.php` and change the configurations if you need
 
 Run the migration
 
@@ -26,12 +26,12 @@ Run the migration
 php artisan migrate
 ```
 
-## Using
+## Using the Activity Log
 
 To generate the classes and methods use this command
 
 ```bash
-php artisan make:activity
+php artisan helper:activity
 ```
 
 and select the Model which you use to generate the Observer.
@@ -84,8 +84,6 @@ public function forceDeleted(MyModel $myModel): void
         ->create();
 }
 ```
-
-You can edit the activity action as you wish.
 
 ## License
 

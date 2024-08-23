@@ -11,13 +11,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "AndyAntunes\\UserActivities\\": "src/"
+            "AndyAntunes\\HelperCommands\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "AndyAntunes\\UserActivities\\UserActivitiesServiceProvider"
+                "AndyAntunes\\HelperCommands\\HelperCommandsServiceProvider"
             ]
         }
     },
