@@ -13,7 +13,7 @@ composer require andyantunes/helper-commands --dev
 Publish the `migration` and the `config/helper-commands.php` config file
 
 ```bash
-php artisan vendor:publish --provider="AndyAntunes\\UserActivities\\HelperCommandsServiceProvider"
+php artisan vendor:publish --provider="AndyAntunes\\HelperCommands\\HelperCommandsServiceProvider"
 ```
 
 Before running migration

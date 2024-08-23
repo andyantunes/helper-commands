@@ -23,7 +23,7 @@ return [
          * The table name which the foreign key of the activity table should be related
          */
         'table_names' => [
-            'recent_activity' => 'recent_activities',
+            'log_activity' => 'log_activities',
 
             'users' => 'users',
         ],

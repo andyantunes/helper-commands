@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Console;
+namespace AndyAntunes\HelperCommands\Console;
 
 use Illuminate\Foundation\Console\ModelMakeCommand;
 
