@@ -1,20 +1,20 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Support\Facades;
+namespace AndyAntunes\HelperCommands\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \AndyAntunes\UserActivities\UserActivities
+ * @see \AndyAntunes\HelperCommands\LogActivities
  * @method static RecentActivity setUserId(int $userId = null)
  * @method static RecentActivity setAction(string $action)
  * @method static RecentActivity setRecordId(int $recordId)
  * @method static RecentActivity create()
  */
-class UserActivity extends Facade
+class LogActivity extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \AndyAntunes\UserActivities\UserActivities::class;
+        return \AndyAntunes\HelperCommands\LogActivities::class;
     }
 }

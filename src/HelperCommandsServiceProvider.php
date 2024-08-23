@@ -1,10 +1,9 @@
 <?php
 
-namespace AndyAntunes\UserActivities;
+namespace AndyAntunes\HelperCommands;
 
-use AndyAntunes\UserActivities\Console\ActivityMakeModel;
-use AndyAntunes\UserActivities\Console\LaravelActivityObserverGenerator;
-use AndyAntunes\UserActivities\Console\LaravelFactoryGenerator;
+use AndyAntunes\HelperCommands\Console\ActivityMakeModel;
+use AndyAntunes\HelperCommands\Console\ActivityObserverGenerator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\{Collection, ServiceProvider};
 
@@ -44,9 +43,8 @@ class HelperCommandsServiceProvider extends ServiceProvider
     protected function registerCommand()
     {
         $this->commands([
-            LaravelActivityObserverGenerator::class,
+            ActivityObserverGenerator::class,
             ActivityMakeModel::class,
-            LaravelFactoryGenerator::class,
         ]);
     }
 
@@ -65,7 +63,7 @@ class HelperCommandsServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/database/migrations/create_recent_activities_table.php.stub' => $this->getMigrationFileName('create_recent_activities_table.php'),
+            __DIR__ . '/database/migrations/create_log_activities_table.php.stub' => $this->getMigrationFileName('create_log_activities_table.php'),
         ], 'migrations');
     }
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Support\Models;
+namespace AndyAntunes\HelperCommands\Support\Models;
 
 class Model
 {

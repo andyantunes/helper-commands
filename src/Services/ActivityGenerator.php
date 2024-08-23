@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Services;
+namespace AndyAntunes\HelperCommands\Services;
 
 use Illuminate\Support\Str;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Services\Traits;
+namespace AndyAntunes\HelperCommands\Services\Traits;
 
 use Illuminate\Support\Facades\File;
 

@@ -2,7 +2,7 @@
 
 namespace {{ namespace }};
 
-use AndyAntunes\UserActivities\Support\Facades\UserActivity;
+use AndyAntunes\HelperCommands\Support\Facades\LogActivity;
 use App\Models\{{ modelName }};
 
 class {{ class }}Observer
@@ -13,7 +13,7 @@ class {{ class }}Observer
     public function created({{ modelName }} ${{ modelVariable }}): void
     {
         $action = "Criou o {{ modelVariable }} de ID: {${{ modelVariable }}->id}";
-        UserActivity::setAction($action)
+        LogActivity::setAction($action)
             ->create();
     }
 
@@ -23,7 +23,7 @@ class {{ class }}Observer
     public function updated({{ modelName }} ${{ modelVariable }}): void
     {
         $action = "Atualizou o {{ modelVariable }} de ID: {${{ modelVariable }}->id}";
-        UserActivity::setAction($action)
+        LogActivity::setAction($action)
             ->create();
     }
 
@@ -33,7 +33,7 @@ class {{ class }}Observer
     public function deleted({{ modelName }} ${{ modelVariable }}): void
     {
         $action = "Deletou o {{ modelVariable }} de ID: {${{ modelVariable }}->id}";
-        UserActivity::setAction($action)
+        LogActivity::setAction($action)
             ->create();
     }
 
@@ -43,7 +43,7 @@ class {{ class }}Observer
     public function restored({{ modelName }} ${{ modelVariable }}): void
     {
         $action = "Restaurou o {{ modelVariable }} de ID: {${{ modelVariable }}->id}";
-        UserActivity::setAction($action)
+        LogActivity::setAction($action)
             ->create();
     }
 
@@ -53,7 +53,7 @@ class {{ class }}Observer
     public function forceDeleted({{ modelName }} ${{ modelVariable }}): void
     {
         $action = "Removeu o {{ modelVariable }} de ID: {${{ modelVariable }}->id}";
-        UserActivity::setAction($action)
+        LogActivity::setAction($action)
             ->create();
     }
 }

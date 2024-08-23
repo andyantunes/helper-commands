@@ -1,16 +1,16 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Console;
+namespace AndyAntunes\HelperCommands\Console;
 
-use AndyAntunes\UserActivities\Services\ActivityGenerator;
-use AndyAntunes\UserActivities\Support\Facades\Model;
+use AndyAntunes\HelperCommands\Services\ActivityGenerator;
+use AndyAntunes\HelperCommands\Support\Facades\Model;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\select;
 
-class LaravelActivityObserverGenerator extends Command
+class ActivityObserverGenerator extends Command
 {
     protected $signature = 'helper:activity {model?}';
 
