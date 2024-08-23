@@ -18,7 +18,7 @@ return new class extends Migration
             throw new \Exception('Error: config/helper-commands.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
-        Schema::create($tableNames['recent_activity'], function (Blueprint $table) use ($tableNames, $columnNames) {
+        Schema::create($tableNames['log_activity'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->bigIncrements('id'); // activity id
 
             $table->unsignedBigInteger($columnNames['user_foreign_key']);
@@ -38,6 +38,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recent_activities');
+        $tableNames = config('helper-commands.log_activities.table_names');
+
+        Schema::dropIfExists($tableNames['log_activity']);
     }
 };
