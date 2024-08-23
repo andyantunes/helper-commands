@@ -2,7 +2,8 @@
 
 namespace AndyAntunes\UserActivities\Console;
 
-use AndyAntunes\UserActivities\Services\Generator;
+use AndyAntunes\UserActivities\Services\ActivityGenerator;
+use AndyAntunes\UserActivities\Support\Facades\Model;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
@@ -11,7 +12,7 @@ use function Laravel\Prompts\select;
 
 class LaravelActivityObserverGenerator extends Command
 {
-    protected $signature = 'make:activity {model?}';
+    protected $signature = 'helper:activity {model?}';
 
     protected $description = 'Create a new Activity Observer class in any path';
 
@@ -22,12 +23,12 @@ class LaravelActivityObserverGenerator extends Command
         if (!$model) {
             $model = select(
                 label: 'What is the name of the model?',
-                options: $this->allModels(),
+                options: Model::all(),
                 required: true
             );
         }
 
-        $generator = new Generator(
+        $generator = new ActivityGenerator(
             type: 'all',
             class: Str::ucfirst($model),
             modelName: Str::ucfirst($model),
@@ -39,29 +40,6 @@ class LaravelActivityObserverGenerator extends Command
         $this->registerObserver(Str::ucfirst($model));
 
         return 1;
-    }
-
-    protected function allModels(): array
-    {
-        $index = 0;
-        $modelList = [];
-        $path = app_path() . "/Models";
-        $results = scandir($path);
-
-        foreach ($results as $result) {
-            if ($result === '.' or $result === '..') continue;
-            $filename = $result;
-
-            if (is_dir($filename)) {
-                $modelList = array_merge($modelList, getModels($filename));
-            } else {
-                $modelList[$index] = substr($filename, 0, -4);
-            }
-
-            $index++;
-        }
-
-        return $modelList;
     }
 
     protected function registerObserver(string $model)

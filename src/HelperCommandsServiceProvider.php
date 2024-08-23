@@ -4,10 +4,11 @@ namespace AndyAntunes\UserActivities;
 
 use AndyAntunes\UserActivities\Console\ActivityMakeModel;
 use AndyAntunes\UserActivities\Console\LaravelActivityObserverGenerator;
+use AndyAntunes\UserActivities\Console\LaravelFactoryGenerator;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\{Collection, ServiceProvider};
 
-class UserActivitiesServiceProvider extends ServiceProvider
+class HelperCommandsServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -29,7 +30,7 @@ class UserActivitiesServiceProvider extends ServiceProvider
         $this->registerCommand();
 
         $this->mergeConfigFrom(
-            __DIR__ . '/config/activities.php',
+            __DIR__ . '/config/helper-commands.php',
             'config',
         );
 
@@ -45,6 +46,7 @@ class UserActivitiesServiceProvider extends ServiceProvider
         $this->commands([
             LaravelActivityObserverGenerator::class,
             ActivityMakeModel::class,
+            LaravelFactoryGenerator::class,
         ]);
     }
 
@@ -59,7 +61,7 @@ class UserActivitiesServiceProvider extends ServiceProvider
         }
 
         $this->publishes([
-            __DIR__ . '/config/activities.php' => config_path('activities.php'),
+            __DIR__ . '/config/helper-commands.php' => config_path('helper-commands.php'),
         ], 'config');
 
         $this->publishes([
@@ -77,7 +79,7 @@ class UserActivitiesServiceProvider extends ServiceProvider
         $filesystem = $this->app->make(Filesystem::class);
 
         return Collection::make([$this->app->databasePath() . DIRECTORY_SEPARATOR . 'migrations' . DIRECTORY_SEPARATOR])
-            ->flatMap(fn ($path) => $filesystem->glob($path . '*_' . $migrationFileName))
+            ->flatMap(fn($path) => $filesystem->glob($path . '*_' . $migrationFileName))
             ->push($this->app->databasePath() . "/migrations/{$timestamp}_{$migrationFileName}")
             ->first();
     }

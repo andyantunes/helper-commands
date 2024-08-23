@@ -3,6 +3,7 @@
 namespace AndyAntunes\UserActivities\Services\Traits;
 
 use Illuminate\Support\Facades\File;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\error;
 

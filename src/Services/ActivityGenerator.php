@@ -4,7 +4,7 @@ namespace AndyAntunes\UserActivities\Services;
 
 use Illuminate\Support\Str;
 
-class Generator
+class ActivityGenerator
 {
     use Traits\HandleStub;
     use Traits\GenerateObserver;
@@ -16,8 +16,7 @@ class Generator
         public string $class,
         public string $modelName,
         public string $modelVariable
-    ) {
-    }
+    ) {}
 
     /**
      * @return void
