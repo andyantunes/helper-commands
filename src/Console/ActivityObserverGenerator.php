@@ -76,7 +76,7 @@ class ActivityObserverGenerator extends Command
 
         $filesystem->put($modelFilePath, $content);
 
-        $this->info("Updated #[ObservedBy] attribute in {$model} Model.");
+        $this->info("Inserted #[ObservedBy] attribute in {$model} Model.");
 
         return 0;
     }

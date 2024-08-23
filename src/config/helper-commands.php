@@ -39,5 +39,4 @@ return [
         ]
     ],
 
-    'factory_generation' => []
 ];
