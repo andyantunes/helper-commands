@@ -7,7 +7,7 @@ Helper Class Generator to generate the user's log activities
 Install the package via composer
 
 ```bash
-composer require andyantunes/user-activities --dev
+composer require andyantunes/helper-commands --dev
 ```
 
 Publish the `migration` and the `config/activities.php` config file
