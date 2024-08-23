@@ -2,9 +2,9 @@
 
 namespace AndyAntunes\HelperCommands;
 
-use AndyAntunes\HelperCommands\Models\LogActivity;
+use AndyAntunes\HelperCommands\Models\LogActivity as ModelLogActivities;
 
-class HelperCommands
+class LogActivity
 {
     protected ?int $userId = null;
 
@@ -69,7 +69,7 @@ class HelperCommands
          *
          * @return \Illuminate\Database\Eloquent\Model|null The newly created record instance, or null if the operation fails.
          */
-        LogActivity::create([
+        ModelLogActivities::create([
             'user_id' => $this->userId ?? auth()->id(),
             'action' => $this->recordId ? "{$this->action} de ID: {$this->recordId}" : $this->action,
         ]);
