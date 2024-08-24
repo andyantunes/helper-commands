@@ -5,7 +5,7 @@ namespace AndyAntunes\HelperCommands\Support\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \AndyAntunes\HelperCommands\LogActivities
+ * @see \AndyAntunes\HelperCommands\LogActivity
  * @method static RecentActivity setUserId(int $userId = null)
  * @method static RecentActivity setAction(string $action)
  * @method static RecentActivity setRecordId(int $recordId)
@@ -15,6 +15,6 @@ class LogActivity extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \AndyAntunes\HelperCommands\LogActivities::class;
+        return \AndyAntunes\HelperCommands\LogActivity::class;
     }
 }
