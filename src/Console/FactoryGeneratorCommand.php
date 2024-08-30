@@ -1,17 +1,17 @@
 <?php
 
-namespace AndyAntunes\UserActivities\Console;
+namespace AndyAntunes\HelperCommands\Console;
 
-use AndyAntunes\UserActivities\Services\FactoryGenerator;
-use AndyAntunes\UserActivities\Support\Facades\Model;
+use AndyAntunes\HelperCommands\Services\FactoryGenerator;
+use AndyAntunes\HelperCommands\Support\Facades\Model;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
 use function Laravel\Prompts\select;
 
-class LaravelFactoryGenerator extends Command
+class FactoryGeneratorCommand extends Command
 {
-    protected $signature = 'gen:factory {model?}';
+    protected $signature = 'helper:factory {model?}';
 
     protected $description = 'Create a new Activity Observer class in any path';
 

@@ -4,6 +4,7 @@ namespace AndyAntunes\HelperCommands;
 
 use AndyAntunes\HelperCommands\Console\ActivityMakeModel;
 use AndyAntunes\HelperCommands\Console\ActivityObserverGenerator;
+use AndyAntunes\HelperCommands\Console\FactoryGeneratorCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\{Collection, ServiceProvider};
 
@@ -45,6 +46,7 @@ class HelperCommandsServiceProvider extends ServiceProvider
         $this->commands([
             ActivityObserverGenerator::class,
             ActivityMakeModel::class,
+            FactoryGeneratorCommand::class,
         ]);
     }
 
