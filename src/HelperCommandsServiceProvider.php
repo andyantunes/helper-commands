@@ -5,6 +5,7 @@ namespace AndyAntunes\HelperCommands;
 use AndyAntunes\HelperCommands\Console\ActivityMakeModel;
 use AndyAntunes\HelperCommands\Console\ActivityObserverGenerator;
 use AndyAntunes\HelperCommands\Console\FactoryGeneratorCommand;
+use AndyAntunes\HelperCommands\Console\FactoryMigrateCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\{Collection, ServiceProvider};
 
@@ -38,7 +39,19 @@ class HelperCommandsServiceProvider extends ServiceProvider
             return $app[ActivityMakeModel::class];
         });
 
-        $this->commands([]);
+        $this->app->singleton(FactoryMigrateCommand::class, function ($app) {
+            // The migrator is responsible for coordinating the process of running migrations.
+            // It checks the status of applied migrations, registers new migrations in the database,
+            // and handles executing or rolling back migrations as needed.
+            // By injecting the migrator into the command, we ensure that the migration process
+            // is properly controlled and that all necessary dependencies are available
+            // during the command execution.
+
+            $creator = $app['migrator'];
+            $composer = $app['events'];
+
+            return new FactoryMigrateCommand($creator, $composer);
+        });
     }
 
     protected function registerCommand()
@@ -47,6 +60,7 @@ class HelperCommandsServiceProvider extends ServiceProvider
             ActivityObserverGenerator::class,
             ActivityMakeModel::class,
             FactoryGeneratorCommand::class,
+            FactoryMigrateCommand::class,
         ]);
     }
 

@@ -45,6 +45,11 @@ return [
      */
     'factory_generation' => [
 
+        /**
+         * Whether you will be reminded to create the factory when a migration is run
+         */
+        'remember_me' => true,
+
         'methods' => [
 
             /**

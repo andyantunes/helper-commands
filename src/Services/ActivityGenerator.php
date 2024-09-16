@@ -9,8 +9,6 @@ class ActivityGenerator
     use Traits\HandleStub;
     use Traits\GenerateObserver;
 
-    private string $stubPath = __DIR__ . '/../../stubs/';
-
     public function __construct(
         public string $type,
         public string $class,
