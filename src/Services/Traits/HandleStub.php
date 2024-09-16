@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 trait HandleStub
 {
+    private string $stubPath = __DIR__ . '/../../../stubs/';
+
     /**
      * @param string $from
      * @param string $to

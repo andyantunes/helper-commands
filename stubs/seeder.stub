@@ -1,0 +1,17 @@
+<?php
+
+namespace {{ namespace }};
+
+use AndyAntunes\HelperCommands\Services\Traits;
+{{ modelsImport }}
+use Illuminate\Database\Seeder;
+
+class FactorySeeder extends Seeder
+{
+    use Traits\HasProgressBar;
+
+    public function run(): void
+    {
+        {{ recordCreation }}
+    }
+}

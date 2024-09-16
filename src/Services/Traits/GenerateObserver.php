@@ -9,7 +9,7 @@ use function Laravel\Prompts\error;
 
 trait GenerateObserver
 {
-    public function all(): void
+    private function all(): void
     {
         $observerNamespace = "App\\Observers";
 

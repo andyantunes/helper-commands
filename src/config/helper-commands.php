@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /**
      * Configuration of Log Activities command
      */
@@ -39,4 +40,74 @@ return [
         ]
     ],
 
+    /**
+     * Configuration of Factory Generation command
+     */
+    'factory_generation' => [
+
+        /**
+         * Whether you will be reminded to create the factory when a migration is run
+         */
+        'remember_me' => true,
+
+        'methods' => [
+
+            /**
+             * String
+             */
+            'varchar' => 'sentence',
+            'text' => 'text',
+
+            /**
+             * Numeric
+             */
+            'int' => 'randomNumber',
+            'float' => 'randomFloat',
+
+            /**
+             * Boolean
+             */
+            'boolean' => 'boolean',
+
+            /**
+             * Date and Time
+             */
+            'date' => 'date',
+            'time' => 'time',
+            'datetime' => 'dateTime',
+            'timestamps' => 'dateTime',
+
+            /**
+             * Custom Configuration for Column Types
+             */
+            'custom_columns' => [
+
+                /**
+                 * Person
+                 */
+                'name' => 'name',
+                'phone_number' => 'phoneNumber',
+                'email' => 'safeEmail',
+                'password' => 'password',
+
+                /**
+                 * Internet
+                 */
+                'url' => 'url',
+
+                /**
+                 * Address
+                 */
+                'city' => 'city',
+                'state' => 'state',
+                'street' => 'streetName',
+                'country' => 'country',
+            ],
+        ],
+
+        'params' => [
+            'passwordMinLength' => 8,
+            'passwordMaxLength' => null,
+        ]
+    ]
 ];

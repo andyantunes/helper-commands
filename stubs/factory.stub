@@ -1,0 +1,26 @@
+<?php
+
+namespace {{ namespace }};
+
+{{ modelsImport }}
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+class {{ class }}Factory extends Factory
+{
+    /**
+     * The model being used by the factory.
+     */
+    protected $model = {{ modelName }}::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        return [
+            {{ definition }}
+        ];
+    }
+}
