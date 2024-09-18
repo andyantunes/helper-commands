@@ -4,11 +4,11 @@ Commands to help in the development of laravel projects
 
 ## Table of Contents
 
-- [Installation](#-installation)
-- [Activity Log](#-activity-log)
-- [Observer](#-observer)
-- [Factories](#-factories)
-- [License](#-license)
+- [Installation](#installation)
+- [Activity Log](#activity-log)
+- [Observer](#observer)
+- [Factories](#factories)
+- [License](#license)
 
 ## Installation
 
