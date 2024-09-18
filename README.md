@@ -2,6 +2,14 @@
 
 Commands to help in the development of laravel projects
 
+## Table of Contents
+
+- [Installation](#-installation)
+- [Activity Log](#-activity-log)
+- [Observer](#-observer)
+- [Factories](#-factories)
+- [License](#-license)
+
 ## Installation
 
 Install the package via composer
@@ -26,7 +34,7 @@ Run the migration
 php artisan migrate
 ```
 
-## Using the Activity Log
+## Activity Log
 
 To generate the classes and methods use this command
 
@@ -36,9 +44,9 @@ php artisan helper:activity
 
 and select the Model which you use to generate the Observer.
 
-## The Observer
+## Observer
 
-The observer is generated with the following methods
+The observer class is generated with the following methods
 
 ```php
 public function created(MyModel $myModel): void
@@ -83,6 +91,28 @@ public function forceDeleted(MyModel $myModel): void
     RecentActivity::setAction($action)
         ->create();
 }
+```
+
+## Factories
+
+To generate factories based in your table use this command
+
+```bash
+php artisan helper:factory
+```
+
+and select options like `ModelName`, `quantity` of records and whether to have events `withEvents`
+
+Example of the created Factory
+
+```php
+User::withoutEvents(function () {
+    $this->command->warn(PHP_EOL . 'Creating users...');
+
+    $this->withProgressBar(7, fn () => User::factory(1)->create());
+
+    $this->command->info('Users created.');
+});
 ```
 
 ## License
