@@ -52,7 +52,7 @@ The observer class is generated with the following methods
 public function created(MyModel $myModel): void
 {
     $action = "Criou o myModel de ID: {$myModel->id}";
-    RecentActivity::setAction($action)
+    LogActivity::setAction($action)
         ->create();
 }
 ```
@@ -61,7 +61,7 @@ public function created(MyModel $myModel): void
 public function updated(MyModel $myModel): void
 {
     $action = "Atualizou o myModel de ID: {$myModel->id}";
-    RecentActivity::setAction($action)
+    LogActivity::setAction($action)
         ->create();
 }
 ```
@@ -70,7 +70,7 @@ public function updated(MyModel $myModel): void
 public function deleted(MyModel $myModel): void
 {
     $action = "Deletou o myModel de ID: {$myModel->id}";
-    RecentActivity::setAction($action)
+    LogActivity::setAction($action)
         ->create();
 }
 ```
@@ -79,7 +79,7 @@ public function deleted(MyModel $myModel): void
 public function restored(MyModel $myModel): void
 {
     $action = "Restaurou o myModel de ID: {$myModel->id}";
-    RecentActivity::setAction($action)
+    LogActivity::setAction($action)
         ->create();
 }
 ```
@@ -88,7 +88,7 @@ public function restored(MyModel $myModel): void
 public function forceDeleted(MyModel $myModel): void
 {
     $action = "Removeu o myModel de ID: {$myModel->id}";
-    RecentActivity::setAction($action)
+    LogActivity::setAction($action)
         ->create();
 }
 ```
