@@ -38,7 +38,7 @@ class FactoryGeneratorCommand extends Command
 
         $withEvents = $this->argument('withEvents');
         if (!$withEvents) {
-            $withEvents = confirm("Do you want to create with events?", true);
+            $withEvents = confirm('Do you want to create without events?', true);
         }
 
         $generator = new FactoryGenerator(
