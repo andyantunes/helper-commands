@@ -8,9 +8,9 @@ return [
     'log_activities' => [
 
         /**
-         * If you are asked to create an activity when a model is created
+         * Whether you will be reminded to create an activity when a model is created
          */
-        'ask_to_create' => true,
+        'remember_me' => true,
 
         /**
          * The model which the activity model should be related
@@ -24,7 +24,7 @@ return [
          * The table name which the foreign key of the activity table should be related
          */
         'table_names' => [
-            'log_activity' => 'log_activities',
+            'log_activity' => 'recent_activities',
 
             'users' => 'users',
         ],
@@ -50,6 +50,9 @@ return [
          */
         'remember_me' => true,
 
+        /**
+         * Relationship between the column type in the database, with Faker methods
+         */
         'methods' => [
 
             /**
@@ -105,6 +108,9 @@ return [
             ],
         ],
 
+        /**
+         * Params to the password columns creation
+         */
         'params' => [
             'passwordMinLength' => 8,
             'passwordMaxLength' => null,
