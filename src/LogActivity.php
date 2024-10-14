@@ -6,11 +6,20 @@ use AndyAntunes\HelperCommands\Models\LogActivity as ModelLogActivity;
 
 class LogActivity
 {
+    private string $foreignKeyColumn;
+    private string $actionColumn;
+
     protected ?int $userId = null;
 
     protected ?int $recordId = null;
 
     protected ?string $action = null;
+
+    public function __construct()
+    {
+        $this->foreignKeyColumn = config('helper-commands.log_activities.column_names.user_foreign_key');
+        $this->actionColumn = config('helper-commands.log_activities.column_names.user_action');
+    }
 
     /**
      * Set the user ID for the activity.
@@ -62,16 +71,9 @@ class LogActivity
      */
     public function create(): void
     {
-        /**
-         * Create a new recent activity record.
-         *
-         * @param array $attributes The attributes to be assigned to the new record.
-         *
-         * @return \Illuminate\Database\Eloquent\Model|null The newly created record instance, or null if the operation fails.
-         */
         ModelLogActivity::create([
-            'user_id' => $this->userId ?? auth()->id(),
-            'action' => $this->recordId ? "{$this->action} de ID: {$this->recordId}" : $this->action,
+            $this->foreignKeyColumn => $this->userId ?? auth()->id(),
+            $this->actionColumn => $this->recordId ? "{$this->action} de ID: {$this->recordId}" : $this->action,
         ]);
     }
 }
