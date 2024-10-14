@@ -17,7 +17,7 @@ class ActivityMakeModel extends ModelMakeCommand
     {
         $result = parent::handle();
 
-        $shouldAsk = config('helper-commands.log_activities.ask_to_create');
+        $shouldAsk = config('helper-commands.log_activities.remember_me');
         if ($shouldAsk && $result !== false) {
             $confirm = $this->confirm("Do you want to create an activity?", true);
             if ($confirm) {

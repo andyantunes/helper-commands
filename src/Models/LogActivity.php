@@ -2,20 +2,13 @@
 
 namespace AndyAntunes\HelperCommands\Models;
 
+use AndyAntunes\HelperCommands\Services\Traits;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LogActivity extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    protected $fillable = [
-        'user_id',
-        'action',
-    ];
+    use Traits\DynamicTableBinding;
 
     public function user(): BelongsTo
     {
