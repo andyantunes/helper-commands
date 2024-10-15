@@ -104,7 +104,7 @@ trait GenerateFactory
         return $definitionString;
     }
 
-    private function createModelsImport(): string
+    private function createAllModelsImport(): string
     {
         sort($this->models);
 
