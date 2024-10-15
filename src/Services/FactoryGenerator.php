@@ -39,19 +39,13 @@ class FactoryGenerator
      */
     public function generate(): void
     {
-        // TODO
-        /**
-         * Adicionar o lembrete sempre após que uma migration é executada
-         * Ver se é viável, caso rode várias migrations
-         */
-
-        // if (File::exists($fileName)) {
-        //     error("The Factory file already exists");
-        //     $overwrite = confirm("Do you want to overwrite the file?", default: false);
-        //     if (!$overwrite) {
-        //         return;
-        //     }
-        // }
+        if (File::exists('database/factories/' . $this->modelName . 'Factory.php')) {
+            error("The Factory file already exists");
+            $overwrite = confirm("Do you want to overwrite the file?", default: false);
+            if (!$overwrite) {
+                return;
+            }
+        }
 
         $tableName = $this->getTableName();
 
@@ -67,7 +61,7 @@ class FactoryGenerator
             replacements: [
                 'class' => $this->modelName,
                 'modelName' => $this->modelName,
-                'modelsImport' => $this->createModelImport(),
+                'modelsImport' => $this->createAllModelsImport(),
                 'namespace' => $this->factoryNamespace,
                 'definition' => $this->convertDefinitionToString($definition),
             ],

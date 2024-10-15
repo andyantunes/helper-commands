@@ -3,7 +3,6 @@
 namespace AndyAntunes\HelperCommands\Services\Traits;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 /**
@@ -79,15 +78,20 @@ trait GenerateSeeder
         $content = $filesystem->get($path);
         $lines = explode("\n", $content);
 
-        $contents = ['in_method' => false];
+        $contents = [
+            'in_method' => false,
+            'imports' => [],
+            'method_signature' => '',
+            'method_content' => '',
+        ];
 
         foreach ($lines as $line) {
-            if (Str::startsWith($line, 'use App\\Models')) {
+            if (Str::startsWith($line, 'use')) {
                 $contents['imports'][] = $line;
                 continue;
             }
 
-            if (Str::endsWith($line, 'void')) {
+            if (Str::contains($line, 'run()')) {
                 $contents['method_signature'] = $line;
                 $contents['in_method'] = true;
                 continue;
@@ -111,9 +115,22 @@ trait GenerateSeeder
         }
 
         return [
-            $contents['imports'],
+            $this->removeBaseImports($contents['imports']),
             $contents['method_content'],
         ];
+    }
+
+    private function removeBaseImports(array $imports): array
+    {
+        if (($key = array_search('use AndyAntunes\HelperCommands\Services\Traits;', $imports)) !== false) {
+            unset($imports[$key]);
+        }
+
+        if (($key = array_search('use Illuminate\Database\Seeder;', $imports)) !== false) {
+            unset($imports[$key]);
+        }
+
+        return $imports;
     }
 
     /**
@@ -145,6 +162,7 @@ trait GenerateSeeder
     private function getWarnModelName(string $pluralModelName): string
     {
         $modelNameSnake = Str::snake($pluralModelName);
+
         return Str::replace('_', ' ', $modelNameSnake);
     }
 
