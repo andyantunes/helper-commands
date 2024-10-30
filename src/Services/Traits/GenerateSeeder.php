@@ -12,6 +12,8 @@ trait GenerateSeeder
 {
     private string $seederNamespace = "Database\\Seeders";
 
+    private string $initialClassBody = 'use Traits\HasProgressBar;';
+
     private function generateSeederFileName(): string
     {
         return $this->seederNamespace . "\\FactorySeeder.php";
@@ -75,47 +77,90 @@ trait GenerateSeeder
     {
         $filesystem = new Filesystem();
 
-        $content = $filesystem->get($path);
-        $lines = explode("\n", $content);
+        $fileContent = $filesystem->get($path);
+        $lines = explode("\n", $fileContent);
 
         $contents = [
             'in_method' => false,
+            'in_class_body' => false,
             'imports' => [],
+            'class_body' => '',
             'method_signature' => '',
             'method_content' => '',
         ];
 
-        foreach ($lines as $line) {
+        $methodOpenBraces = 0;
+        $foundMethodStart = false;
+
+        foreach ($lines as $key => $line) {
             if (Str::startsWith($line, 'use')) {
                 $contents['imports'][] = $line;
                 continue;
             }
 
-            if (Str::contains($line, 'run()')) {
+            if (Str::startsWith($line, 'class')) {
+                $contents['in_class_body'] = true;
+            }
+
+            if (Str::containsAll($line, ['function', 'run'])) {
+                $contents['in_class_body'] = false;
+            }
+
+            if ($contents['in_class_body']) {
+                if (!Str::startsWith($line, 'class') && !Str::contains($line, '{')) {
+                    $contents['class_body'] .= "\n$line";
+                    continue;
+                }
+            }
+
+            if (Str::containsAll($line, ['function', 'run'])) {
                 $contents['method_signature'] = $line;
                 $contents['in_method'] = true;
                 continue;
             }
 
             if ($contents['in_method']) {
-                if (Str::endsWith($line, '}')) {
+                if (Str::contains($line, '{')) {
+                    if (!$foundMethodStart) {
+                        $foundMethodStart = true; // Marca que estamos no começo do método
+                    }
+
+                    $methodOpenBraces++;
+                }
+
+                if (Str::contains($line, '}')) {
+                    $methodOpenBraces--;
+                }
+
+                if ($foundMethodStart && $methodOpenBraces === 0) {
                     $contents['method_content'] .= "\n\n";
                     $contents['in_method'] = false;
                     continue;
                 }
 
                 if (trim($line) !== '{') {
-                    if (isset($contents['method_content'])) {
-                        $contents['method_content'] .= "\n$line";
-                    } else {
-                        $contents['method_content'] = trim($line);
-                    }
+                    $contents['method_content'] .= "\n$line";
                 }
+
+                // if (Str::contains($line, '}')) {
+                //     $contents['method_content'] .= "\n\n";
+                //     $contents['in_method'] = false;
+                //     continue;
+                // }
+
+                // if (trim($line) !== '{') {
+                //     if (!empty($contents['method_content'])) {
+                //         $contents['method_content'] .= "\n$line";
+                //     } else {
+                //         $contents['method_content'] = trim($line);
+                //     }
+                // }
             }
         }
-
+        // dd($contents['class_body']);
         return [
             $this->removeBaseImports($contents['imports']),
+            $contents['class_body'],
             $contents['method_content'],
         ];
     }

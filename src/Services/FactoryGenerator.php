@@ -72,7 +72,7 @@ class FactoryGenerator
 
         if ($this->factorySeederExists()) {
             $seederPath = $this->generateSeederFileName();
-            list($imports, $methodContent) = $this->getExistingSeederContent($seederPath);
+            list($imports, $classBody, $methodContent) = $this->getExistingSeederContent($seederPath);
 
             $newRecordCreation = $this->createRecordCreation($this->modelName, $this->recordsQuantity, $this->withEvents);
             $newModelImport = $this->createModelImport();
@@ -80,13 +80,14 @@ class FactoryGenerator
             $mergedImports = $this->mergeSeederImports($imports, $newModelImport);
             $mergedRecordCreation = $this->mergeSeederRecordCreation($methodContent, $newRecordCreation);
         }
-
+        // dd($classBody ?? $this->initialClassBody);
         $this->generateStubs(
             from: $this->stubPath . 'seeder.stub',
             to: $this->generateSeederFileName(),
             replacements: [
                 'class' => $this->modelName,
                 'modelsImport' => $mergedImports ?? $this->createModelImport(),
+                'classBody' => $classBody ?? $this->initialClassBody,
                 'recordCreation' => $mergedRecordCreation ?? $this->createRecordCreation($this->modelName, $this->recordsQuantity, $this->withEvents),
                 'modelName' => $this->modelName,
                 'namespace' => $this->seederNamespace,
