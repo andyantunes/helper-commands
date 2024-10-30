@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 
 class FactorySeeder extends Seeder
 {
-    use Traits\HasProgressBar;
+    {{ classBody }}
 
     public function run(): void
     {
