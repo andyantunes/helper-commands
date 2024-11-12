@@ -2,6 +2,11 @@
 
 Commands to help in the development of laravel projects
 
+[![Latest Stable Version](https://poser.pugx.org/andyantunes/helper-commands/version.svg)](https://packagist.org/packages/andyantunes/helper-commands)
+[![Total Downloads](https://poser.pugx.org/andyantunes/helper-commands/downloads)](https://packagist.org/packages/andyantunes/helper-commands)
+[![PHP Version Require](https://poser.pugx.org/andyantunes/helper-commands/require/php)](https://packagist.org/packages/andyantunes/helper-commands)
+[![License](https://poser.pugx.org/andyantunes/helper-commands/license)](https://packagist.org/packages/andyantunes/helper-commands)
+
 ## Table of Contents
 
 - [Installation](#installation)
